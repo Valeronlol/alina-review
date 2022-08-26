@@ -3,5 +3,7 @@
 
 # Stack
  - express.js
+ - koa.js
  - pub.js
+ - postgreSQL
  - sequelize

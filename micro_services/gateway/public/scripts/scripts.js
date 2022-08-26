@@ -58,6 +58,7 @@ const addNewUser = async () => {
         } else {
           alert('Вход успешный]!');
           localStorage.setItem('token', JSON.stringify(data));
+          localStorage.setItem('email', JSON.stringify(user.email));
         }
       })
       .catch((error) => {
@@ -66,10 +67,8 @@ const addNewUser = async () => {
     }
   }
 
-  const uploadImage = async () => {
-    const formData = new FormData();
-    const fileField = document.querySelector('input[type="file"]');
-    formData.append('image', fileField.files[0]);
+formElem.onsubmit = async (e) => {
+      e.preventDefault();
     const token = localStorage.getItem('token');
     const string = token.split(':')[1].split('"')[1];
     try {
@@ -78,11 +77,32 @@ const addNewUser = async () => {
         headers: {
           'Authorization': `Bearer ${string}`
         },
-        body: formData
+        body: new FormData(formElem)
       });
       alert('Фото загружено!');
     } catch {
       console.error(error);
     }
     location.reload();
-  }
+}
+
+const connectSocket = () => {
+  const socket = io('ws://localhost:3000');
+  socket.on('add_mess', (data) => {
+    const chat = document.getElementById('all_mess');
+    const mess = document.createElement('div');
+    mess.className = "new-message";
+    mess.innerHTML = `<span>${data.author}   ${data.time}   ${data.message}</span>`;
+    chat.append(mess);
+  });
+  const input = document.getElementById('send-message');
+  input.addEventListener('click', () => {
+    const message = document.getElementById('message');
+    const name = localStorage.getItem('email') || '"Аноним"';
+    const author = name.split('"')[1];
+    socket.emit('send_mess', { message: message.value, author: author });
+    message.value = '';
+  });
+}
+
+connectSocket();

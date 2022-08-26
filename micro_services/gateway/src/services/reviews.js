@@ -3,7 +3,7 @@ const fs = require('fs');
 const formidable = require('formidable');
 const sharp = require('sharp');
 
-exports.fetchAllPets = () => {
+exports.fetchReviews = () => {
     let imagesPets = [];
     const frontendImagesPath = path.resolve(process.cwd(), './public/images/original/');
     const images = fs.readdirSync(frontendImagesPath);
@@ -28,7 +28,7 @@ exports.upload = (req) => new Promise(((resolve, reject) => {
         multiples: true,
         filename: ($, _, {originalFilename}) => `${originalFilename}`,
     })
-        .parse(req, (err) => {
-            err ? reject(err) : resolve({code: 200});
+        .parse(req, (err, fields, files) => {
+            err ? reject(err) : resolve({ fields, files });
         })
 }))

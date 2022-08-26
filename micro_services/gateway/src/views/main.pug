@@ -15,7 +15,17 @@ block content
           input#regEmail.field(type='text' name='email' placeholder='Email')
           input#regPassword.field(type='text' name='password' placeholder='Password')
           button.btn(type='submit' onclick='addNewUser()') Регистрация
+        div#container  
         div#upload
-          div.label Добавить фото:
-          input(type='file' name='multipleFiles' multiple='multiple')
-          input(type='submit' value='Загрузить' onclick='uploadImage()')
+          form#formElem
+            textarea(name="review" id="review" class="textarea" cols="60" rows="5")
+            div.label Добавить фото:
+            input(type='file' name='multipleFiles' multiple='multiple')
+            input(type='submit' value='Оставить отзыв')
+        div#chat
+          div#add-message
+            div.label Добавить сообщение:
+            textarea(name="message" id="message" class="textarea" cols="60" rows="5")
+            input(type='submit' value='Отправить' id='send-message')
+          div#all_mess
+          
