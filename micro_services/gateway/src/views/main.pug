@@ -1,0 +1,21 @@
+extends components/layout.pug
+
+block content
+  #main
+    head
+      title= title
+    body
+      header#header.label
+        div#authorization
+          input#email(type='text' name='email' placeholder='Email')
+          input#password(type='text' name='password' placeholder='Password')
+          button.btn(type='button' onclick='getTokenData()') Войти
+        div#registration
+          input#regName.field(type='text' name='name' placeholder='Name')
+          input#regEmail.field(type='text' name='email' placeholder='Email')
+          input#regPassword.field(type='text' name='password' placeholder='Password')
+          button.btn(type='submit' onclick='addNewUser()') Регистрация
+        div#upload
+          div.label Добавить фото:
+          input(type='file' name='multipleFiles' multiple='multiple')
+          input(type='submit' value='Загрузить' onclick='uploadImage()')

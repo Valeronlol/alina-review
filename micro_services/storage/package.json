@@ -1,0 +1,24 @@
+{
+  "name": "storage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon src/app.js"
+  },
+  "author": "ALINA",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/router": "^11.0.1",
+    "ajv": "^8.11.0",
+    "dotenv": "^16.0.1",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "pg": "^8.8.0",
+    "sequelize": "^6.21.4"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.41",
+    "nodemon": "^2.0.16"
+  }
+}

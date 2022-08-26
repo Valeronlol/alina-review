@@ -1,0 +1,69 @@
+body {
+    background-color: #faebd7;
+}
+
+header {
+    background-image: url(images/1583482618_3.jpg);
+    background-size: 100%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 500px;
+}
+
+#authorization {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 25px;
+}
+
+#registration {
+    width: 20%;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 25px;
+    padding: 25px;
+}
+
+.field {
+    width: 250px;
+    height: 30px;
+}
+
+.btn {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+    background: #621620;
+    background: linear-gradient(0deg, #621620 0%, #661420 100%);
+    border: none;
+  }
+
+  .btn:before {
+    height: 0%;
+    width: 2px;
+  }
+  
+  .btn:hover {
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+                -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+      inset -4px -4px 6px 0 rgba(255,255,255,.2),
+      inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+  }
+  
