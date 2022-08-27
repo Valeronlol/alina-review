@@ -7,7 +7,7 @@ const { isNumber } = require('lodash');
 const { onConnection } = require('./services/onConnection');
 
 const app = express();
-const port = 3000;
+const port = parseInt(process.env.PORT) || 3000;
 const httpServer = createServer(app);
 const io = new Server(httpServer);
 
@@ -32,4 +32,6 @@ app.use((err, req, res, next) => {
     });
 });
 
-httpServer.listen(port);
+httpServer.listen(port, () => {
+  console.log('Server started on', `http://127.0.0.1:${port}`)
+});

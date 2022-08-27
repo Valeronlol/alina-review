@@ -11,7 +11,7 @@ app.use(bodyParser());
 app.use(router.routes());
 
 async function main (){
-  await sequelize.sync({ force: true });
+  await sequelize.sync({ force: process.env.NODE_ENV === 'development' });
   app.listen(port, () => {
     console.log(`Koa app listening on port ${port}`);
   });
