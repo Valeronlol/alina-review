@@ -1,3 +1,39 @@
+window.addEventListener('DOMContentLoaded', async () => {
+  const getReviews = async () => {
+      const reviews = (await fetch('/reviews').then((res) => res.json())) || [];
+      console.log(reviews);
+  }
+  await getReviews();
+
+  const getMessages = async () => {
+    const messages = (await fetch('/messages').then((res) => res.json())) || [];
+    console.log(messages);
+}
+await getMessages();
+
+const connectSocket = () => {
+  const socket = io('ws://localhost:3000');
+  socket.on('add_mess', (data) => {
+    const chat = document.getElementById('all_mess');
+    const mess = document.createElement('div');
+    mess.className = "new-message";
+    mess.innerHTML = `<span>${data.author}   ${data.time}   ${data.message}</span>`;
+    chat.append(mess);
+  });
+  const input = document.getElementById('send-message');
+  input.addEventListener('click', () => {
+    const message = document.getElementById('message');
+    const name = localStorage.getItem('email') || '"Аноним"';
+    const author = name.split('"')[1];
+    socket.emit('send_mess', { message: message.value, author: author });
+    message.value = '';
+  });
+}
+
+connectSocket();
+
+})
+
 const addNewUser = async () => {
     const name = document.getElementById('regName').value;
     const email = document.getElementById('regEmail').value;
@@ -85,24 +121,3 @@ formElem.onsubmit = async (e) => {
     }
     location.reload();
 }
-
-const connectSocket = () => {
-  const socket = io('ws://localhost:3000');
-  socket.on('add_mess', (data) => {
-    const chat = document.getElementById('all_mess');
-    const mess = document.createElement('div');
-    mess.className = "new-message";
-    mess.innerHTML = `<span>${data.author}   ${data.time}   ${data.message}</span>`;
-    chat.append(mess);
-  });
-  const input = document.getElementById('send-message');
-  input.addEventListener('click', () => {
-    const message = document.getElementById('message');
-    const name = localStorage.getItem('email') || '"Аноним"';
-    const author = name.split('"')[1];
-    socket.emit('send_mess', { message: message.value, author: author });
-    message.value = '';
-  });
-}
-
-connectSocket();

@@ -8,7 +8,8 @@ const validationMiddleware = require('./middleware/validation-middleware');
 
 const router = new Router();
 
-router.post('/reviews', reviewsHandler.fetchReviews);
+router.get('/reviews', reviewsHandler.fetchReviews);
+router.get('/messages', messagesHendler.getMessages);
 router.post('/reg', usersHandler.createNewUser);
 router.post('/login', usersHandler.findUserByLogin);
 router.post('/upload', reviewsHandler.createNewReview);

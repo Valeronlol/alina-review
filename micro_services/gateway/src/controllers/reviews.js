@@ -1,8 +1,8 @@
 const reviewsModel = require('../services/reviews');
-const { createNewReview, fetchReviews } = require('../services/data-client');
+const { createNewReview, getReviewsList } = require('../services/data-client');
 
 exports.getReviews = async (req, res) => {
-    const reviews = await fetchReviews();
+    const reviews = await getReviewsList();
     res.send(reviews);
 }
 
